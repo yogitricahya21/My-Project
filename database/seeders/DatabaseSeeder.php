@@ -13,11 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Panggil seeder yang Anda buat
+        $this->call([
+            CategorySeeder::class,
+            StorageLocationSeeder::class,
+            ItemSeeder::class,
+            ActivityCategorySeeder::class,
+            ActivitySeeder::class,
+            // Penting: Inbound dan Outbound harus setelah Item,
+            // Loan harus setelah Item dan User
+            InboundTransactionSeeder::class,
+            OutboundTransactionSeeder::class,
+            LoanSeeder::class,
         ]);
     }
 }
